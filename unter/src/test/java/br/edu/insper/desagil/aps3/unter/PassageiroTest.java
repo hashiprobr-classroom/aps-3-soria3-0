@@ -1,43 +1,45 @@
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class PassageiroTest {
+    private Passageiro passageiro;
+    private Corrida corridaMock;
+
+    @BeforeEach
+    void setUp() {
+        passageiro = new Passageiro("101112131", "Fernando");
+        corridaMock = mock(Corrida.class);
+    }
+
     @Test
     void constroi() {
-        Passageiro p = new Passageiro("101112131", "Fernando");
-        assertEquals("101112131", p.getCpf());
-        assertEquals("Fernando", p.getNome());
+        assertEquals("101112131", passageiro.getCpf());
+        assertEquals("Fernando", passageiro.getNome());
     }
 
     @Test
     void mudaNome() {
-        Passageiro p = new Passageiro("101112131", "Fernando");
-        p.setNome("Carlos");
-        assertEquals("Carlos", p.getNome());
+        passageiro.setNome("Carlos");
+        assertEquals("Carlos", passageiro.getNome());
     }
 
     @Test
     void avalia() {
-        Passageiro p = new Passageiro("101112131", "Fernando");
-        Corrida c = new Corrida(p);
-        p.avalia(c, 3);
-        assertEquals(3, c.getNotaMotorista());
+        passageiro.avalia(corridaMock, 3);
+        verify(corridaMock).setNotaMotorista(3);
     }
 
     @Test
     void avaliaBaixo() {
-        Passageiro p = new Passageiro("101112131", "Fernando");
-        Corrida c = new Corrida(p);
-        p.avalia(c, 0);
-        assertEquals(1, c.getNotaMotorista());
+        passageiro.avalia(corridaMock, 0);
+        verify(corridaMock).setNotaMotorista(1);
     }
 
     @Test
     void avaliaAlto() {
-        Passageiro p = new Passageiro("101112131", "Fernando");
-        Corrida c = new Corrida(p);
-        p.avalia(c, 6);
-        assertEquals(5, c.getNotaMotorista());
+        passageiro.avalia(corridaMock, 6);
+        verify(corridaMock).setNotaMotorista(5);
     }
 }

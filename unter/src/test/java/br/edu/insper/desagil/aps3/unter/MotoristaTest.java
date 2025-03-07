@@ -1,43 +1,45 @@
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class MotoristaTest {
+    private Motorista motorista;
+    private Corrida corridaMock;
+
+    @BeforeEach
+    void setUp() {
+        motorista = new Motorista("987654321", "Carlos");
+        corridaMock = mock(Corrida.class);
+    }
+
     @Test
     void constroi() {
-        Motorista m = new Motorista("987654321", "Carlos");
-        assertEquals("987654321", m.getCpf());
-        assertEquals("Carlos", m.getNome());
+        assertEquals("987654321", motorista.getCpf());
+        assertEquals("Carlos", motorista.getNome());
     }
 
     @Test
     void mudaNome() {
-        Motorista m = new Motorista("987654321", "Carlos");
-        m.setNome("Pedro");
-        assertEquals("Pedro", m.getNome());
+        motorista.setNome("Pedro");
+        assertEquals("Pedro", motorista.getNome());
     }
 
     @Test
     void avalia() {
-        Motorista m = new Motorista("987654321", "Carlos");
-        Corrida c = new Corrida(new Passageiro("123456789", "Joao"));
-        m.avalia(c, 3);
-        assertEquals(3, c.getNotaPassageiro());
+        motorista.avalia(corridaMock, 3);
+        verify(corridaMock).setNotaPassageiro(3);
     }
 
     @Test
     void avaliaBaixo() {
-        Motorista m = new Motorista("987654321", "Carlos");
-        Corrida c = new Corrida(new Passageiro("123456789", "Joao"));
-        m.avalia(c, 0);
-        assertEquals(1, c.getNotaPassageiro());
+        motorista.avalia(corridaMock, 0);
+        verify(corridaMock).setNotaPassageiro(1);
     }
 
     @Test
     void avaliaAlto() {
-        Motorista m = new Motorista("987654321", "Carlos");
-        Corrida c = new Corrida(new Passageiro("123456789", "Joao"));
-        m.avalia(c, 6);
-        assertEquals(5, c.getNotaPassageiro());
+        motorista.avalia(corridaMock, 6);
+        verify(corridaMock).setNotaPassageiro(5);
     }
 }

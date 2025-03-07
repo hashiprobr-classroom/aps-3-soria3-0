@@ -1,3 +1,5 @@
+package br.edu.insper.desagil.aps3.unter;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,18 +30,18 @@ class MotoristaTest {
     @Test
     void avalia() {
         motorista.avalia(corridaMock, 3);
-        verify(corridaMock).setNotaPassageiro(3);
+        assertEquals(3, corridaMock.getNotaPassageiro());
     }
 
     @Test
     void avaliaBaixo() {
         motorista.avalia(corridaMock, 0);
-        verify(corridaMock).setNotaPassageiro(1);
+        assertEquals(1, corridaMock.getNotaPassageiro());
     }
 
     @Test
     void avaliaAlto() {
         motorista.avalia(corridaMock, 6);
-        verify(corridaMock).setNotaPassageiro(5);
+        assertEquals(5, corridaMock.getNotaPassageiro());
     }
 }

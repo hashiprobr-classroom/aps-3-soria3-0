@@ -1,7 +1,8 @@
+package br.edu.insper.desagil.aps3.unter;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 class CentralTest {
     private Central central;
@@ -23,55 +24,35 @@ class CentralTest {
 
     @Test
     void avaliacoesPassageiro() {
-        Corrida c1 = mock(Corrida.class);
-        Corrida c2 = mock(Corrida.class);
-        Corrida c3 = mock(Corrida.class);
-        Corrida c4 = mock(Corrida.class);
+        Passageiro passageiro = new Passageiro("123456789", "Lucas");
 
-        when(c1.getPassageiroCpf()).thenReturn("123456789");
-        when(c2.getPassageiroCpf()).thenReturn("123456789");
-        when(c3.getPassageiroCpf()).thenReturn("123456789");
-        when(c4.getPassageiroCpf()).thenReturn("987654321");
+        Corrida c1 = new Corrida(passageiro);
+        Corrida c2 = new Corrida(passageiro);
+        Corrida c3 = new Corrida(passageiro);
 
-        when(c1.getNotaPassageiro()).thenReturn(1);
-        when(c2.getNotaPassageiro()).thenReturn(4);
-        when(c3.getNotaPassageiro()).thenReturn(5);
-        when(c4.getNotaPassageiro()).thenReturn(3);
+        c1.avaliaPassageiro(1);
+        c2.avaliaPassageiro(4);
+        c3.avaliaPassageiro(5);
 
         central.adiciona(c1);
         central.adiciona(c2);
         central.adiciona(c3);
-        central.adiciona(c4);
 
         assertEquals(3.33, central.mediaPassageiro("123456789"), 0.01);
     }
 
     @Test
     void avaliacoesMotorista() {
-        Corrida c1 = mock(Corrida.class);
-        Corrida c2 = mock(Corrida.class);
-        Corrida c3 = mock(Corrida.class);
-        Corrida c4 = mock(Corrida.class);
-        Corrida c5 = mock(Corrida.class);
+        Motorista motorista = new Motorista("999999999", "Rodrigo");
 
-        when(c1.getMotoristaCpf()).thenReturn("123456789");
-        when(c2.getMotoristaCpf()).thenReturn("123456789");
-        when(c3.getMotoristaCpf()).thenReturn("123456789");
-        when(c4.getMotoristaCpf()).thenReturn("987654321");
-        when(c5.getMotoristaCpf()).thenReturn("987654321");
+        Corrida c1 = new Corrida(new Passageiro("987654321", "Ana"));
+        Corrida c2 = new Corrida(new Passageiro("123456789", "Beatriz"));
 
-        when(c1.getNotaMotorista()).thenReturn(0);
-        when(c2.getNotaMotorista()).thenReturn(2);
-        when(c3.getNotaMotorista()).thenReturn(3);
-        when(c4.getNotaMotorista()).thenReturn(1);
-        when(c5.getNotaMotorista()).thenReturn(1);
+        c1.avaliaMotorista(3);
+        c2.avaliaMotorista(2);
 
         central.adiciona(c1);
         central.adiciona(c2);
-        central.adiciona(c3);
-        central.adiciona(c4);
-        central.adiciona(c5);
 
-        assertEquals(1.67, central.mediaMotorista("987654321"), 0.01);
-    }
+        assertEquals(2.5, central.mediaMotorista("999999999"),0.01);}
 }

@@ -1,3 +1,5 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class PassageiroTest {
     @Test
     void constroi() {

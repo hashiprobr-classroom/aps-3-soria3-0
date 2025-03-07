@@ -1,3 +1,5 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class CentralTest {
     @Test
     void nenhumaAvaliacaoPassageiro() {

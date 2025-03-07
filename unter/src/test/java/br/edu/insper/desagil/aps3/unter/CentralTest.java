@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CentralTest {
+    public static final double DELTA = 0.01;
     private Central central;
 
     @BeforeEach
@@ -38,7 +39,7 @@ class CentralTest {
         central.adiciona(c2);
         central.adiciona(c3);
 
-        assertEquals(3.33, central.mediaPassageiro("123456789"), 0.01);
+        assertEquals(3.33, central.mediaPassageiro("123456789"), DELTA);
     }
 
     @Test
@@ -54,5 +55,5 @@ class CentralTest {
         central.adiciona(c1);
         central.adiciona(c2);
 
-        assertEquals(2.5, central.mediaMotorista("999999999"),0.01);}
+        assertEquals(2.5, central.mediaMotorista("999999999"), DELTA);}
 }

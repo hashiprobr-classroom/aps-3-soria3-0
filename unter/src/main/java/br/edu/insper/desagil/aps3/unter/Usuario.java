@@ -23,7 +23,6 @@ public class Usuario {
     }
 
     public void avalia(Corrida corrida, int nota) {
-        pass
+        ;
     }
-
 }

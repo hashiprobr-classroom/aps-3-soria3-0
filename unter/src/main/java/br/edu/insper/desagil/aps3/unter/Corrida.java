@@ -30,6 +30,7 @@ public class Corrida {
         return notaMotorista;
     }
 
+
     private static int notaTruncada(int nota) {
         if (nota < 1) {
             return 1;

@@ -46,4 +46,8 @@ public class Central {
         }
         return mediaArray(avaliacoes);
    }
+
+   public void adiciona(Corrida corrida) {
+        corridas.add(corrida);
+   }
 }

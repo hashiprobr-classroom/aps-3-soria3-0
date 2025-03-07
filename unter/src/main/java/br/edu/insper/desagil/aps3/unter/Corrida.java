@@ -13,7 +13,9 @@ public class Corrida {
         this.notaPassageiro = 0;
         this.notaMotorista = 0;
     }
-
+    public void setMotorista(Motorista motorista) {
+        this.motorista = motorista;
+    }
     public Passageiro getPassageiro() {
         return passageiro;
     }
@@ -49,3 +51,4 @@ public class Corrida {
         this.notaMotorista = notaTruncada(valor);
     }
 }
+

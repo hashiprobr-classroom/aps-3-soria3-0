@@ -14,6 +14,9 @@ public class Central {
 
     // separei a função para chamar a media nos outros métodos
     private double mediaArray(List<Integer> array) {
+        if (array.isEmpty()) {
+            return 0.0;
+        }
         int soma = 0;
         for (int num : array) {
             soma += num;
@@ -37,15 +40,17 @@ public class Central {
     public double mediaMotorista(String cpfMotorista) {
         List<Integer> avaliacoes = new ArrayList<>();
         for (Corrida corrida : corridas) {
-
-            String cpf = corrida.getMotorista().getCpf();
-            int nota = corrida.getNotaMotorista();
-            if (cpf.equals(cpfMotorista) && nota != 0) {
-                avaliacoes.add(nota);
+            // Verifica se o motorista não é nulo antes de acessar seus métodos
+            if (corrida.getMotorista() != null) {
+                String cpf = corrida.getMotorista().getCpf();
+                int nota = corrida.getNotaMotorista();
+                if (cpf.equals(cpfMotorista) && nota != 0) {
+                    avaliacoes.add(nota);
+                }
             }
         }
         return mediaArray(avaliacoes);
-   }
+    }
 
    public void adiciona(Corrida corrida) {
         corridas.add(corrida);

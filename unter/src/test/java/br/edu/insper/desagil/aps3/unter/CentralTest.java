@@ -49,11 +49,15 @@ class CentralTest {
         Corrida c1 = new Corrida(new Passageiro("987654321", "Ana"));
         Corrida c2 = new Corrida(new Passageiro("123456789", "Beatriz"));
 
+        c1.setMotorista(motorista);
+        c2.setMotorista(motorista);
+
         c1.avaliaMotorista(3);
         c2.avaliaMotorista(2);
 
         central.adiciona(c1);
         central.adiciona(c2);
 
-        assertEquals(2.5, central.mediaMotorista("999999999"), DELTA);}
+        assertEquals(2.5, central.mediaMotorista("999999999"), DELTA);
+    }
 }
